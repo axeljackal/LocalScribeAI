@@ -5,8 +5,6 @@
     android:viewportHeight="108"
     android:tint="#FFFFFF">
     
-    <!-- Background circle (will be primary color in adaptive icon) -->
-    
     <!-- Microphone icon representing audio transcription -->
     <path
         android:fillColor="#FFFFFF"
@@ -17,27 +15,19 @@
         android:fillColor="#FFFFFF"
         android:pathData="M70,53c0,8.84 -7.16,16 -16,16s-16,-7.16 -16,-16h-4c0,10.28 7.81,18.75 17.81,19.82V81h4.38v-8.18c10,-1.07 17.81,-9.54 17.81,-19.82h-4z"/>
     
-    <!-- AI/Neural network dots -->
-    <circle
+    <!-- AI/Neural network dots (circles as paths) -->
+    <path
         android:fillColor="#FFFFFF"
-        android:cx="34"
-        android:cy="40"
-        android:r="3"/>
-    <circle
+        android:pathData="M34,37a3,3 0,1 1,0 6a3,3 0,1 1,0 -6z"/>
+    <path
         android:fillColor="#FFFFFF"
-        android:cx="74"
-        android:cy="40"
-        android:r="3"/>
-    <circle
+        android:pathData="M74,37a3,3 0,1 1,0 6a3,3 0,1 1,0 -6z"/>
+    <path
         android:fillColor="#FFFFFF"
-        android:cx="34"
-        android:cy="55"
-        android:r="2.5"/>
-    <circle
+        android:pathData="M34,52.5a2.5,2.5 0,1 1,0 5a2.5,2.5 0,1 1,0 -5z"/>
+    <path
         android:fillColor="#FFFFFF"
-        android:cx="74"
-        android:cy="55"
-        android:r="2.5"/>
+        android:pathData="M74,52.5a2.5,2.5 0,1 1,0 5a2.5,2.5 0,1 1,0 -5z"/>
     
     <!-- Connecting lines (neural network style) -->
     <path
