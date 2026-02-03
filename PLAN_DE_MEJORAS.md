@@ -120,6 +120,7 @@ Reducir tamaño del APK manteniendo todos los modelos incluidos.
 
 - [ ] **2.1** Migrar de APK a **Android App Bundle (AAB)** para optimización por arquitectura
 - [ ] **2.2** Reemplazar dependencia FFmpeg:
+
   ```kotlin
   // Antes (todas las plataformas)
   implementation("org.bytedeco:ffmpeg-platform:7.1-1.5.11")
@@ -128,6 +129,7 @@ Reducir tamaño del APK manteniendo todos los modelos incluidos.
   implementation("org.bytedeco:ffmpeg:7.1-1.5.11:android-arm64")
   implementation("org.bytedeco:ffmpeg:7.1-1.5.11:android-arm")
   ```
+
 - [ ] **2.3** Habilitar `isShrinkResources = true` en build de debug para testing
 - [ ] **2.4** Revisar y eliminar recursos no utilizados
 - [ ] **2.5** Optimizar imágenes y vectores drawable
@@ -367,6 +369,7 @@ Asegurar funcionamiento en dispositivos desde gama media.
 ### Dispositivo de Referencia
 
 **Moto Edge 40 Pro**
+
 - SoC: Snapdragon 8 Gen 2
 - RAM: 12 GB
 - Android: 13+

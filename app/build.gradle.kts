@@ -91,7 +91,8 @@ dependencies {
 
     // FFmpegKit para conversión de audio (AAB compatible, ~15MB vs ~100MB de bytedeco)
     // Variante 'audio' incluye solo codecs de audio (mp3, aac, ogg, flac, wav, etc.)
-    implementation("com.arthenica:ffmpeg-kit-audio:6.0-2")
+    // LTS version para mayor compatibilidad de dispositivos
+    implementation("com.arthenica:ffmpeg-kit-audio:6.0.LTS")
 
     // Coroutines para operaciones asíncronas
     implementation(libs.kotlinx.coroutines.android)
