@@ -27,3 +27,19 @@
 
 # Reglas para Compose
 -keep class androidx.compose.** { *; }
+
+# Reglas para Bytedeco/JavaCPP y FFmpeg
+-keep class org.bytedeco.** { *; }
+-keepclassmembers class org.bytedeco.** { *; }
+-dontwarn org.bytedeco.**
+
+# Ignorar clases de OSGI que no existen en Android
+-dontwarn org.osgi.**
+-dontwarn org.osgi.annotation.versioning.**
+-dontwarn aQute.bnd.annotation.**
+-dontwarn org.slf4j.**
+
+# Mantener JNI
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
