@@ -6,136 +6,122 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-// Colores Light Theme
-private val LightPrimary = Color(0xFF1976D2)
-private val LightOnPrimary = Color(0xFFFFFFFF)
-private val LightPrimaryContainer = Color(0xFFD1E4FF)
-private val LightOnPrimaryContainer = Color(0xFF001D36)
-
-private val LightSecondary = Color(0xFF00BFA5)
-private val LightOnSecondary = Color(0xFFFFFFFF)
-private val LightSecondaryContainer = Color(0xFFCDFFF7)
-private val LightOnSecondaryContainer = Color(0xFF00201B)
-
-private val LightTertiary = Color(0xFF7C4DFF)
-private val LightOnTertiary = Color(0xFFFFFFFF)
-private val LightTertiaryContainer = Color(0xFFE8DDFF)
-private val LightOnTertiaryContainer = Color(0xFF22005D)
-
-private val LightError = Color(0xFFBA1A1A)
-private val LightOnError = Color(0xFFFFFFFF)
-private val LightErrorContainer = Color(0xFFFFDAD6)
-private val LightOnErrorContainer = Color(0xFF410002)
-
-private val LightBackground = Color(0xFFFDFCFF)
-private val LightOnBackground = Color(0xFF1A1C1E)
-private val LightSurface = Color(0xFFFDFCFF)
-private val LightOnSurface = Color(0xFF1A1C1E)
-private val LightSurfaceVariant = Color(0xFFE1E2EC)
-private val LightOnSurfaceVariant = Color(0xFF44474F)
-private val LightOutline = Color(0xFF74777F)
-private val LightOutlineVariant = Color(0xFFC4C6D0)
-
-// Colores Dark Theme
-private val DarkPrimary = Color(0xFF9ECAFF)
-private val DarkOnPrimary = Color(0xFF003258)
-private val DarkPrimaryContainer = Color(0xFF00497D)
-private val DarkOnPrimaryContainer = Color(0xFFD1E4FF)
-
-private val DarkSecondary = Color(0xFF4FDBCA)
-private val DarkOnSecondary = Color(0xFF003730)
-private val DarkSecondaryContainer = Color(0xFF005047)
-private val DarkOnSecondaryContainer = Color(0xFF70F7E5)
-
-private val DarkTertiary = Color(0xFFCFBDFE)
-private val DarkOnTertiary = Color(0xFF3A1D84)
-private val DarkTertiaryContainer = Color(0xFF5336A4)
-private val DarkOnTertiaryContainer = Color(0xFFE8DDFF)
-
-private val DarkError = Color(0xFFFFB4AB)
-private val DarkOnError = Color(0xFF690005)
-private val DarkErrorContainer = Color(0xFF93000A)
-private val DarkOnErrorContainer = Color(0xFFFFDAD6)
-
-private val DarkBackground = Color(0xFF1A1C1E)
-private val DarkOnBackground = Color(0xFFE2E2E6)
-private val DarkSurface = Color(0xFF1A1C1E)
-private val DarkOnSurface = Color(0xFFE2E2E6)
-private val DarkSurfaceVariant = Color(0xFF44474F)
-private val DarkOnSurfaceVariant = Color(0xFFC4C6D0)
-private val DarkOutline = Color(0xFF8E9099)
-private val DarkOutlineVariant = Color(0xFF44474F)
-
+/**
+ * Color Scheme para Light Theme
+ * Paleta: Verde Agua (Primary) + Rosa Pastel (Secondary)
+ */
 private val LightColorScheme = lightColorScheme(
-    primary = LightPrimary,
-    onPrimary = LightOnPrimary,
-    primaryContainer = LightPrimaryContainer,
-    onPrimaryContainer = LightOnPrimaryContainer,
-    secondary = LightSecondary,
-    onSecondary = LightOnSecondary,
-    secondaryContainer = LightSecondaryContainer,
-    onSecondaryContainer = LightOnSecondaryContainer,
-    tertiary = LightTertiary,
-    onTertiary = LightOnTertiary,
-    tertiaryContainer = LightTertiaryContainer,
-    onTertiaryContainer = LightOnTertiaryContainer,
-    error = LightError,
-    onError = LightOnError,
-    errorContainer = LightErrorContainer,
-    onErrorContainer = LightOnErrorContainer,
-    background = LightBackground,
-    onBackground = LightOnBackground,
-    surface = LightSurface,
-    onSurface = LightOnSurface,
-    surfaceVariant = LightSurfaceVariant,
-    onSurfaceVariant = LightOnSurfaceVariant,
-    outline = LightOutline,
-    outlineVariant = LightOutlineVariant
+    // Primary - Verde Agua
+    primary = TealPrimary,
+    onPrimary = TealOnPrimary,
+    primaryContainer = TealPrimaryContainer,
+    onPrimaryContainer = TealOnPrimaryContainer,
+    
+    // Secondary - Rosa Pastel
+    secondary = PinkSecondaryDark,
+    onSecondary = PinkOnSecondary,
+    secondaryContainer = PinkSecondaryContainer,
+    onSecondaryContainer = PinkOnSecondaryContainer,
+    
+    // Tertiary - Púrpura complementario
+    tertiary = TertiaryLight,
+    onTertiary = TertiaryOnLight,
+    tertiaryContainer = TertiaryContainerLight,
+    onTertiaryContainer = TertiaryOnContainerLight,
+    
+    // Error
+    error = ErrorLight,
+    onError = ErrorOnLight,
+    errorContainer = ErrorContainerLight,
+    onErrorContainer = ErrorOnContainerLight,
+    
+    // Background & Surface
+    background = BackgroundLight,
+    onBackground = OnBackgroundLight,
+    surface = SurfaceLight,
+    onSurface = OnSurfaceLight,
+    surfaceVariant = SurfaceVariantLight,
+    onSurfaceVariant = OnSurfaceVariantLight,
+    
+    // Outline
+    outline = OutlineLight,
+    outlineVariant = OutlineVariantLight,
+    
+    // Inverse
+    inverseSurface = SurfaceDark,
+    inverseOnSurface = OnSurfaceDark,
+    inversePrimary = TealPrimaryDarkTheme
 )
 
+/**
+ * Color Scheme para Dark Theme
+ * Paleta adaptada para modo oscuro
+ */
 private val DarkColorScheme = darkColorScheme(
-    primary = DarkPrimary,
-    onPrimary = DarkOnPrimary,
-    primaryContainer = DarkPrimaryContainer,
-    onPrimaryContainer = DarkOnPrimaryContainer,
-    secondary = DarkSecondary,
-    onSecondary = DarkOnSecondary,
-    secondaryContainer = DarkSecondaryContainer,
-    onSecondaryContainer = DarkOnSecondaryContainer,
-    tertiary = DarkTertiary,
-    onTertiary = DarkOnTertiary,
-    tertiaryContainer = DarkTertiaryContainer,
-    onTertiaryContainer = DarkOnTertiaryContainer,
-    error = DarkError,
-    onError = DarkOnError,
-    errorContainer = DarkErrorContainer,
-    onErrorContainer = DarkOnErrorContainer,
-    background = DarkBackground,
-    onBackground = DarkOnBackground,
-    surface = DarkSurface,
-    onSurface = DarkOnSurface,
-    surfaceVariant = DarkSurfaceVariant,
-    onSurfaceVariant = DarkOnSurfaceVariant,
-    outline = DarkOutline,
-    outlineVariant = DarkOutlineVariant
+    // Primary - Verde Agua (más claro para dark)
+    primary = TealPrimaryDarkTheme,
+    onPrimary = TealOnPrimaryDarkTheme,
+    primaryContainer = TealPrimaryContainerDark,
+    onPrimaryContainer = TealOnPrimaryContainerDark,
+    
+    // Secondary - Rosa Pastel (adaptado para dark)
+    secondary = PinkSecondaryDarkTheme,
+    onSecondary = PinkOnSecondaryDarkTheme,
+    secondaryContainer = PinkSecondaryContainerDark,
+    onSecondaryContainer = PinkOnSecondaryContainerDark,
+    
+    // Tertiary
+    tertiary = TertiaryDark,
+    onTertiary = TertiaryOnDark,
+    tertiaryContainer = TertiaryContainerDark,
+    onTertiaryContainer = TertiaryOnContainerDark,
+    
+    // Error
+    error = ErrorDark,
+    onError = ErrorOnDark,
+    errorContainer = ErrorContainerDark,
+    onErrorContainer = ErrorOnContainerDark,
+    
+    // Background & Surface
+    background = BackgroundDark,
+    onBackground = OnBackgroundDark,
+    surface = SurfaceDark,
+    onSurface = OnSurfaceDark,
+    surfaceVariant = SurfaceVariantDark,
+    onSurfaceVariant = OnSurfaceVariantDark,
+    
+    // Outline
+    outline = OutlineDark,
+    outlineVariant = OutlineVariantDark,
+    
+    // Inverse
+    inverseSurface = SurfaceLight,
+    inverseOnSurface = OnSurfaceLight,
+    inversePrimary = TealPrimary
 )
 
+/**
+ * Tema principal de LocalScribeAI
+ * 
+ * @param darkTheme Si es true, usa el tema oscuro. Por defecto sigue el sistema.
+ * @param dynamicColor Si es true en Android 12+, usa colores dinámicos del wallpaper.
+ *                     Deshabilitado por defecto para mantener la identidad visual.
+ * @param content Contenido composable a renderizar con el tema.
+ */
 @Composable
 fun LocalScribeAITheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color está disponible en Android 12+
-    dynamicColor: Boolean = true,
+    // Deshabilitamos dynamic color para mantener nuestra paleta verde agua + rosa
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
+            val context = androidx.compose.ui.platform.LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
         darkTheme -> DarkColorScheme
@@ -147,7 +133,7 @@ fun LocalScribeAITheme(
         SideEffect {
             val window = (view.context as Activity).window
             window.statusBarColor = colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
         }
     }
 
