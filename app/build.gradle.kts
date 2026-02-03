@@ -66,6 +66,20 @@ android {
         }
         jniLibs {
             useLegacyPackaging = true
+            // Excluir libs nativas de plataformas no-Android (bytedeco incluye todas)
+            excludes += setOf(
+                "**/linux-x86/**",
+                "**/linux-x86_64/**",
+                "**/linux-arm/**",
+                "**/linux-arm64/**",
+                "**/linux-ppc64le/**",
+                "**/macosx-x86_64/**",
+                "**/macosx-arm64/**",
+                "**/windows-x86/**",
+                "**/windows-x86_64/**",
+                "**/ios-arm64/**",
+                "**/ios-x86_64/**"
+            )
         }
     }
 
@@ -93,13 +107,10 @@ dependencies {
     // Sherpa ONNX para transcripción offline (AAR local)
     implementation(files("libs/sherpa-onnx-1.12.23.aar"))
 
-    // FFmpeg para conversión de audio (bytedeco - solo Android ARM para reducir tamaño)
-    // Optimizado: ~30MB vs ~100MB con ffmpeg-platform
-    implementation("org.bytedeco:ffmpeg:7.1-1.5.11:android-arm64")
-    implementation("org.bytedeco:ffmpeg:7.1-1.5.11:android-arm")
-    // JavaCPP base requerido por ffmpeg
-    implementation("org.bytedeco:javacpp:1.5.11:android-arm64")
-    implementation("org.bytedeco:javacpp:1.5.11:android-arm")
+    // FFmpeg para conversión de audio (bytedeco)
+    // El filtrado de arquitecturas se hace via ndk.abiFilters en defaultConfig
+    // que excluye las libs nativas de x86/x86_64 del APK final
+    implementation("org.bytedeco:ffmpeg-platform:7.1-1.5.11")
 
     // Coroutines para operaciones asíncronas
     implementation(libs.kotlinx.coroutines.android)
