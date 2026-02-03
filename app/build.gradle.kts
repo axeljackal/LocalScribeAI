@@ -4,12 +4,6 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
-repositories {
-    flatDir {
-        dirs("libs")
-    }
-}
-
 android {
     namespace = "com.localscribe.ai"
     compileSdk = 34
