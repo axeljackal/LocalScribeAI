@@ -104,9 +104,12 @@ jobs:
     
     - name: 🏗️ Build Release APK
       run: ./gradlew assembleRelease --stacktrace
-    
-    - name: 📦 Build Release AAB (App Bundle)
-      run: ./gradlew bundleRelease --stacktrace
+
+    # AAB disabled: bytedeco/ffmpeg puts executables in lib/ which BundleTool rejects
+    # Error: "File 'root/lib/arm64-v8a/ffmpeg' uses reserved file or directory name 'lib'"
+    # TODO: Consider alternative FFmpeg library for Play Store AAB support
+    # - name: 📦 Build Release AAB (App Bundle)
+    #   run: ./gradlew bundleRelease --stacktrace
 
     - name: 📊 Show output sizes
       run: |
@@ -121,8 +124,11 @@ jobs:
         retention-days: 30
         if-no-files-found: warn
 
-    - name: 📤 Upload Release AAB
-      uses: actions/upload-artifact@v4
-      with:
-        name: LocalScribeAI-Release-AAB-${{ github.sha }}
-        path: app/build/outputs/bundle/release/app-release.aab
+    # AAB upload disabled (see note above about bytedeco compatibility)
+    # - name: 📤 Upload Release AAB
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: LocalScribeAI-Release-AAB-${{ github.sha }}
+    #     path: app/build/outputs/bundle/release/app-release.aab
+    #     retention-days: 30
+    #     if-no-files-found: warn
