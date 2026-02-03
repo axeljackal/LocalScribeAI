@@ -89,10 +89,8 @@ dependencies {
     // Sherpa ONNX para transcripción offline (AAR local)
     implementation(files("libs/sherpa-onnx-1.12.23.aar"))
 
-    // FFmpegKit para conversión de audio (AAB compatible, ~15MB vs ~100MB de bytedeco)
-    // Variante 'audio' incluye solo codecs de audio (mp3, aac, ogg, flac, wav, etc.)
-    // LTS version para mayor compatibilidad de dispositivos
-    implementation("com.arthenica:ffmpeg-kit-audio:6.0.LTS")
+    // Audio conversion: usando APIs nativas de Android (MediaCodec/MediaExtractor)
+    // No requiere dependencias externas - 100% compatible con AAB/Play Store
 
     // Coroutines para operaciones asíncronas
     implementation(libs.kotlinx.coroutines.android)

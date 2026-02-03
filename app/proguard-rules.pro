@@ -6,9 +6,8 @@
 -keep class com.k2fsa.sherpa.onnx.** { *; }
 -keepclassmembers class com.k2fsa.sherpa.onnx.** { *; }
 
-# Mantener clases de FFmpegKit
--keep class com.arthenica.ffmpegkit.** { *; }
--keep class com.arthenica.smartexception.** { *; }
+# Audio conversion usa APIs nativas de Android (MediaCodec/MediaExtractor)
+# No requiere reglas ProGuard adicionales
 
 # Mantener nuestras clases de modelo
 -keep class com.localscribe.ai.** { *; }
