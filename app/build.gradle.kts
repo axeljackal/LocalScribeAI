@@ -58,6 +58,10 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
             excludes += "/META-INF/INDEX.LIST"
             excludes += "/META-INF/DEPENDENCIES"
+            // Bytedeco/JavaCPP native-image configs (duplicate files)
+            excludes += "/META-INF/native-image/**"
+            excludes += "/META-INF/proguard/**"
+            excludes += "/META-INF/maven/**"
         }
         jniLibs {
             useLegacyPackaging = true
