@@ -1,0 +1,218 @@
+================================================================================
+                    INSTRUCCIONES FINALES - LocalScribe AI
+================================================================================
+
+¡Felicidades! El código base del proyecto está completo. 
+Sigue estos pasos para que la app compile y funcione correctamente:
+
+================================================================================
+PASO 1: DESCARGAR GRADLE WRAPPER JAR
+================================================================================
+
+El archivo gradle-wrapper.jar no se incluye en el código fuente por ser binario.
+Descárgalo de:
+
+URL: https://github.com/gradle/gradle/raw/v8.7.0/gradle/wrapper/gradle-wrapper.jar
+
+Colócalo en: LocalScribeAI/gradle/wrapper/gradle-wrapper.jar
+
+Alternativa: Ejecuta en otra máquina con Gradle instalado:
+  gradle wrapper --gradle-version 8.7
+
+================================================================================
+PASO 2: DESCARGAR MODELOS DE IA (WHISPER)
+================================================================================
+
+Los modelos son necesarios para la transcripción offline.
+
+--- MODELO TINY (Modo Rápido) ---
+Repositorio: https://huggingface.co/csukuangfj/sherpa-onnx-whisper-tiny
+
+Descargar estos archivos:
+  • tiny-encoder.int8.onnx  → Renombrar a: encoder.int8.onnx
+  • tiny-decoder.int8.onnx  → Renombrar a: decoder.int8.onnx
+  • tiny-tokens.txt         → Renombrar a: tokens.txt
+
+Colocar en: app/src/main/assets/model_tiny/
+
+--- MODELO BASE (Modo Preciso) ---
+Repositorio: https://huggingface.co/csukuangfj/sherpa-onnx-whisper-base
+
+Descargar estos archivos:
+  • base-encoder.int8.onnx  → Renombrar a: encoder.int8.onnx
+  • base-decoder.int8.onnx  → Renombrar a: decoder.int8.onnx
+  • base-tokens.txt         → Renombrar a: tokens.txt
+
+Colocar en: app/src/main/assets/model_base/
+
+Tamaño aproximado:
+  • model_tiny: ~40 MB
+  • model_base: ~150 MB
+
+================================================================================
+PASO 3: RECURSOS GRÁFICOS (OPCIONAL)
+================================================================================
+
+El proyecto incluye iconos vectoriales (XML) que funcionan sin modificación.
+Si deseas usar imágenes PNG personalizadas:
+
+ARCHIVOS NECESARIOS:
+  1. ic_app_logo.png    - Logo principal de la app
+  2. ic_mode_fast.png   - Icono para modo rápido (rayo/flash)
+  3. ic_mode_accurate.png - Icono para modo preciso (cerebro/objetivo)
+
+DENSIDADES REQUERIDAS:
+  • drawable-mdpi/    (48x48 px)
+  • drawable-hdpi/    (72x72 px)
+  • drawable-xhdpi/   (96x96 px)
+  • drawable-xxhdpi/  (144x144 px)
+  • drawable-xxxhdpi/ (192x192 px)
+
+RECOMENDACIÓN: Usa https://romannurik.github.io/AndroidAssetStudio/
+para generar las diferentes densidades automáticamente.
+
+================================================================================
+PASO 4: VERIFICAR ESTRUCTURA DE CARPETAS
+================================================================================
+
+Tu proyecto debe verse así:
+
+LocalScribeAI/
+├── .github/
+│   └── workflows/
+│       └── android_build.yml
+├── app/
+│   ├── src/main/
+│   │   ├── assets/
+│   │   │   ├── model_tiny/
+│   │   │   │   ├── encoder.int8.onnx    ← DESCARGAR
+│   │   │   │   ├── decoder.int8.onnx    ← DESCARGAR
+│   │   │   │   └── tokens.txt           ← DESCARGAR
+│   │   │   └── model_base/
+│   │   │       ├── encoder.int8.onnx    ← DESCARGAR
+│   │   │       ├── decoder.int8.onnx    ← DESCARGAR
+│   │   │       └── tokens.txt           ← DESCARGAR
+│   │   ├── java/com/localscribe/ai/
+│   │   │   ├── MainActivity.kt
+│   │   │   ├── LocalScribeApplication.kt
+│   │   │   ├── model/
+│   │   │   ├── service/
+│   │   │   ├── viewmodel/
+│   │   │   └── ui/theme/
+│   │   ├── res/
+│   │   │   ├── drawable/
+│   │   │   ├── mipmap-anydpi-v26/
+│   │   │   ├── values/
+│   │   │   └── xml/
+│   │   └── AndroidManifest.xml
+│   ├── build.gradle.kts
+│   └── proguard-rules.pro
+├── gradle/
+│   ├── libs.versions.toml
+│   └── wrapper/
+│       ├── gradle-wrapper.jar           ← DESCARGAR
+│       └── gradle-wrapper.properties
+├── build.gradle.kts
+├── settings.gradle.kts
+├── gradlew
+├── gradlew.bat
+└── README.md
+
+================================================================================
+PASO 5: COMPILAR EL PROYECTO
+================================================================================
+
+OPCIÓN A - Via GitHub Actions (Recomendado):
+
+1. Sube el proyecto a GitHub:
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git remote add origin https://github.com/TU_USUARIO/LocalScribeAI.git
+   git push -u origin main
+
+2. Ve a la pestaña "Actions" en GitHub
+3. El workflow se ejecutará automáticamente
+4. Descarga el APK desde "Artifacts"
+
+OPCIÓN B - Compilación local:
+
+1. Instala JDK 17 (NO JRE, necesitas el compilador javac):
+
+   WINDOWS (con winget):
+     winget install EclipseAdoptium.Temurin.17.JDK
+
+   WINDOWS (manual):
+     Descarga de: https://adoptium.net/temurin/releases/?version=17
+     Selecciona: Windows x64 -> JDK -> .msi
+
+   macOS:
+     brew install --cask temurin17
+
+   Linux (Debian/Ubuntu):
+     sudo apt install openjdk-17-jdk
+
+2. Configura JAVA_HOME (Windows PowerShell como Admin):
+     [System.Environment]::SetEnvironmentVariable("JAVA_HOME", 
+       "C:\Program Files\Eclipse Adoptium\jdk-17.0.17.10-hotspot", "Machine")
+
+3. Verifica la instalación:
+     java -version    (debe mostrar 17.x.x)
+     javac -version   (debe mostrar 17.x.x - SI FALLA, tienes JRE no JDK)
+
+4. Reinicia la terminal/VS Code para aplicar variables de entorno
+
+5. Ejecuta en terminal:
+   cd LocalScribeAI
+   ./gradlew assembleDebug
+
+6. El APK estará en:
+   app/build/outputs/apk/debug/app-debug.apk
+
+================================================================================
+ENLACES DE DESCARGA DIRECTA DE MODELOS
+================================================================================
+
+MODELO TINY (Multilingüe - Español):
+https://huggingface.co/csukuangfj/sherpa-onnx-whisper-tiny/resolve/main/tiny-encoder.int8.onnx
+https://huggingface.co/csukuangfj/sherpa-onnx-whisper-tiny/resolve/main/tiny-decoder.int8.onnx
+https://huggingface.co/csukuangfj/sherpa-onnx-whisper-tiny/resolve/main/tiny-tokens.txt
+
+MODELO BASE (Multilingüe - Español):
+https://huggingface.co/csukuangfj/sherpa-onnx-whisper-base/resolve/main/base-encoder.int8.onnx
+https://huggingface.co/csukuangfj/sherpa-onnx-whisper-base/resolve/main/base-decoder.int8.onnx
+https://huggingface.co/csukuangfj/sherpa-onnx-whisper-base/resolve/main/base-tokens.txt
+
+================================================================================
+SOLUCIÓN DE PROBLEMAS
+================================================================================
+
+ERROR: "No Java compiler found, please ensure you are running Gradle with a JDK"
+  → Tienes instalado JRE en lugar de JDK
+  → Instala JDK 17: winget install EclipseAdoptium.Temurin.17.JDK
+  → Verifica con: javac -version (debe funcionar)
+  → Configura JAVA_HOME apuntando a la carpeta del JDK
+  → Reinicia VS Code/terminal después de instalar
+
+ERROR: "JAVA_HOME is not set"
+  → Windows: [System.Environment]::SetEnvironmentVariable("JAVA_HOME", 
+       "C:\Program Files\Eclipse Adoptium\jdk-17.0.17.10-hotspot", "Machine")
+  → Linux/macOS: export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+
+ERROR: "Model not found"
+  → Verifica que los archivos .onnx estén en la carpeta assets correcta
+  → Verifica que los nombres sean exactamente: encoder.int8.onnx, decoder.int8.onnx
+
+ERROR: "FFmpeg conversion failed"
+  → El archivo de audio puede estar corrupto
+  → Intenta con otro archivo de audio
+
+ERROR: "Gradle wrapper not found"
+  → Descarga gradle-wrapper.jar y colócalo en gradle/wrapper/
+
+ERROR: Compilación falla por memoria
+  → Aumenta memoria en gradle.properties: org.gradle.jvmargs=-Xmx4096m
+
+================================================================================
+¡LISTO! Tu app de transcripción offline está preparada.
+================================================================================

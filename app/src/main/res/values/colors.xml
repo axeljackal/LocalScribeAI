@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Colores primarios - Tema moderno azul/índigo -->
+    <color name="primary">#1976D2</color>
+    <color name="primary_variant">#1565C0</color>
+    <color name="primary_light">#42A5F5</color>
+    <color name="on_primary">#FFFFFF</color>
+    
+    <!-- Colores secundarios - Acento teal -->
+    <color name="secondary">#00BFA5</color>
+    <color name="secondary_variant">#00897B</color>
+    <color name="on_secondary">#FFFFFF</color>
+    
+    <!-- Colores terciarios -->
+    <color name="tertiary">#7C4DFF</color>
+    <color name="on_tertiary">#FFFFFF</color>
+    
+    <!-- Colores de superficie -->
+    <color name="surface">#FAFAFA</color>
+    <color name="surface_variant">#E3F2FD</color>
+    <color name="on_surface">#1C1B1F</color>
+    <color name="on_surface_variant">#49454F</color>
+    
+    <!-- Colores de fondo -->
+    <color name="background">#FFFFFF</color>
+    <color name="on_background">#1C1B1F</color>
+    
+    <!-- Colores de error -->
+    <color name="error">#B3261E</color>
+    <color name="on_error">#FFFFFF</color>
+    <color name="error_container">#F9DEDC</color>
+    
+    <!-- Colores de éxito -->
+    <color name="success">#2E7D32</color>
+    <color name="success_container">#C8E6C9</color>
+    
+    <!-- Colores de outline -->
+    <color name="outline">#79747E</color>
+    <color name="outline_variant">#CAC4D0</color>
+    
+    <!-- Gradientes para cards -->
+    <color name="card_gradient_start">#E3F2FD</color>
+    <color name="card_gradient_end">#BBDEFB</color>
+    
+    <!-- Colores específicos para modos -->
+    <color name="mode_fast_color">#FF9800</color>
+    <color name="mode_accurate_color">#4CAF50</color>
+</resources>

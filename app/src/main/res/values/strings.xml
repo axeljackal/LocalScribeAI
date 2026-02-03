@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">LocalScribe AI</string>
+    
+    <!-- Estados de la UI -->
+    <string name="welcome_title">Listo para transcribir</string>
+    <string name="welcome_subtitle">Comparte un audio desde WhatsApp u otra app para comenzar</string>
+    
+    <!-- Selector de modo -->
+    <string name="mode_selector_title">Potencia de Transcripción</string>
+    <string name="mode_fast">Rápido</string>
+    <string name="mode_fast_desc">Procesamiento veloz, ideal para notas de voz cortas</string>
+    <string name="mode_accurate">Preciso</string>
+    <string name="mode_accurate_desc">Mayor precisión, recomendado para audios largos</string>
+    
+    <!-- Estados de procesamiento -->
+    <string name="status_receiving">Recibiendo archivo…</string>
+    <string name="status_converting">Optimizando audio (FFmpeg)…</string>
+    <string name="status_transcribing">Transcribiendo con IA local…</string>
+    <string name="status_loading_model">Cargando modelo de IA…</string>
+    <string name="status_complete">¡Transcripción completada!</string>
+    
+    <!-- Resultados -->
+    <string name="result_title">Resultado de la Transcripción</string>
+    <string name="copy_to_clipboard">Copiar al portapapeles</string>
+    <string name="copied_success">¡Texto copiado al portapapeles!</string>
+    <string name="share_text">Compartir texto</string>
+    <string name="new_transcription">Nueva transcripción</string>
+    
+    <!-- Errores -->
+    <string name="error_title">Error</string>
+    <string name="error_invalid_audio">No se pudo procesar el archivo de audio</string>
+    <string name="error_conversion_failed">Error al convertir el audio</string>
+    <string name="error_transcription_failed">Error durante la transcripción</string>
+    <string name="error_model_not_found">Modelo de IA no encontrado</string>
+    <string name="error_permission_denied">Permiso denegado para acceder al archivo</string>
+    <string name="try_again">Intentar de nuevo</string>
+    
+    <!-- Información -->
+    <string name="info_offline">100%% Offline • Tus datos nunca salen del dispositivo</string>
+    <string name="info_privacy">🔒 Privacidad garantizada</string>
+</resources>

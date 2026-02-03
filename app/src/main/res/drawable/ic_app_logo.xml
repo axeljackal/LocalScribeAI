@@ -1,0 +1,60 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108"
+    android:tint="#FFFFFF">
+    
+    <!-- Background circle (will be primary color in adaptive icon) -->
+    
+    <!-- Microphone icon representing audio transcription -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,27c-4.42,0 -8,3.58 -8,8v18c0,4.42 3.58,8 8,8s8,-3.58 8,-8V35c0,-4.42 -3.58,-8 -8,-8z"/>
+    
+    <!-- Microphone stand -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M70,53c0,8.84 -7.16,16 -16,16s-16,-7.16 -16,-16h-4c0,10.28 7.81,18.75 17.81,19.82V81h4.38v-8.18c10,-1.07 17.81,-9.54 17.81,-19.82h-4z"/>
+    
+    <!-- AI/Neural network dots -->
+    <circle
+        android:fillColor="#FFFFFF"
+        android:cx="34"
+        android:cy="40"
+        android:r="3"/>
+    <circle
+        android:fillColor="#FFFFFF"
+        android:cx="74"
+        android:cy="40"
+        android:r="3"/>
+    <circle
+        android:fillColor="#FFFFFF"
+        android:cx="34"
+        android:cy="55"
+        android:r="2.5"/>
+    <circle
+        android:fillColor="#FFFFFF"
+        android:cx="74"
+        android:cy="55"
+        android:r="2.5"/>
+    
+    <!-- Connecting lines (neural network style) -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.5"
+        android:pathData="M37,40 L46,35"/>
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.5"
+        android:pathData="M71,40 L62,35"/>
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.5"
+        android:pathData="M36.5,55 L46,53"/>
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.5"
+        android:pathData="M71.5,55 L62,53"/>
+    
+</vector>

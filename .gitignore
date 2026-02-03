@@ -1,0 +1,88 @@
+# Gradle build files
+.gradle/
+build/
+**/build/
+
+# Gradle wrapper JAR - INCLUIR en el repo (necesario para compilar)
+!gradle/wrapper/gradle-wrapper.jar
+
+# Local configuration file (contiene rutas locales)
+local.properties
+
+# IntelliJ/Android Studio
+.idea/
+*.iml
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/gradle.xml
+.idea/dictionaries
+.idea/libraries
+.idea/caches
+.idea/modules.xml
+.idea/misc.xml
+
+# Signing configs (NUNCA subir claves privadas)
+*.jks
+*.keystore
+keystore.properties
+signing.properties
+
+# APK/AAB files (se generan en el build)
+*.apk
+*.aab
+
+# Log files
+*.log
+crash-*.txt
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Kotlin
+*.class
+
+# Proguard
+proguard/
+mapping.txt
+
+# Build outputs
+app/release/
+app/debug/
+**/outputs/
+
+# Test outputs
+app/build/test-results/
+app/build/reports/
+
+# Captures (screenshots, etc)
+captures/
+
+# External native build
+.externalNativeBuild/
+.cxx/
+
+# NDK
+obj/
+
+# FFmpeg temp files
+*.wav
+*.tmp
+*.pcm
+
+# Coverage
+coverage/
+jacoco.exec
+*.exec
+
+# VS Code (opcional - algunos prefieren incluirlo)
+# .vscode/
+
+# Carpeta IMG para logo (incluir)
+!IMG/
