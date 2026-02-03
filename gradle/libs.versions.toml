@@ -5,8 +5,6 @@ coreKtx = "1.13.1"
 lifecycleRuntimeKtx = "2.8.4"
 activityCompose = "1.9.1"
 composeBom = "2024.08.00"
-sherpaOnnx = "1.10.32"
-ffmpegKit = "6.0-2.LTS"
 coroutines = "1.8.1"
 
 [libraries]
@@ -21,8 +19,6 @@ androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
-sherpa-onnx = { group = "com.k2fsa.sherpa", name = "onnx-android", version.ref = "sherpaOnnx" }
-ffmpeg-kit-min = { group = "com.arthenica", name = "ffmpeg-kit-min-gpl", version.ref = "ffmpegKit" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 
 [plugins]

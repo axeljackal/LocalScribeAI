@@ -4,6 +4,12 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
+repositories {
+    flatDir {
+        dirs("libs")
+    }
+}
+
 android {
     namespace = "com.localscribe.ai"
     compileSdk = 34
@@ -85,11 +91,11 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.material.icons.extended)
 
-    // Sherpa ONNX para transcripción offline
-    implementation(libs.sherpa.onnx)
+    // Sherpa ONNX para transcripción offline (AAR local)
+    implementation(files("libs/sherpa-onnx-1.12.23.aar"))
 
     // FFmpeg para conversión de audio
-    implementation(libs.ffmpeg.kit.min)
+    implementation("com.arthenica:ffmpeg-kit-min-gpl:6.0-2")
 
     // Coroutines para operaciones asíncronas
     implementation(libs.kotlinx.coroutines.android)
