@@ -105,10 +105,24 @@ jobs:
     - name: 🏗️ Build Release APK
       run: ./gradlew assembleRelease --stacktrace
     
+    - name: 📦 Build Release AAB (App Bundle)
+      run: ./gradlew bundleRelease --stacktrace
+
+    - name: 📊 Show output sizes
+      run: |
+        echo "📂 Build outputs:"
+        find app/build/outputs -type f \( -name "*.apk" -o -name "*.aab" \) -exec du -h {} \;
+
     - name: 📤 Upload Release APK
       uses: actions/upload-artifact@v4
       with:
-        name: LocalScribeAI-Release-${{ github.sha }}
+        name: LocalScribeAI-Release-APK-${{ github.sha }}
         path: app/build/outputs/apk/release/app-release-unsigned.apk
         retention-days: 30
         if-no-files-found: warn
+
+    - name: 📤 Upload Release AAB
+      uses: actions/upload-artifact@v4
+      with:
+        name: LocalScribeAI-Release-AAB-${{ github.sha }}
+        path: app/build/outputs/bundle/release/app-release.aab

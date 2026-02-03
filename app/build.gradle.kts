@@ -34,6 +34,7 @@ android {
         }
         debug {
             isMinifyEnabled = false
+            isShrinkResources = false  // Solo release tiene shrink
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
         }
@@ -92,8 +93,13 @@ dependencies {
     // Sherpa ONNX para transcripción offline (AAR local)
     implementation(files("libs/sherpa-onnx-1.12.23.aar"))
 
-    // FFmpeg para conversión de audio (bytedeco - alternativa mantenida)
-    implementation("org.bytedeco:ffmpeg-platform:7.1-1.5.11")
+    // FFmpeg para conversión de audio (bytedeco - solo Android ARM para reducir tamaño)
+    // Optimizado: ~30MB vs ~100MB con ffmpeg-platform
+    implementation("org.bytedeco:ffmpeg:7.1-1.5.11:android-arm64")
+    implementation("org.bytedeco:ffmpeg:7.1-1.5.11:android-arm")
+    // JavaCPP base requerido por ffmpeg
+    implementation("org.bytedeco:javacpp:1.5.11:android-arm64")
+    implementation("org.bytedeco:javacpp:1.5.11:android-arm")
 
     // Coroutines para operaciones asíncronas
     implementation(libs.kotlinx.coroutines.android)

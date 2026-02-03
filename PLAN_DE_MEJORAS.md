@@ -1,8 +1,9 @@
 # Plan de Mejoras y Auditorías - LocalScribeAI
 
-> **Versión**: 1.0  
+> **Versión**: 1.1  
 > **Fecha**: Febrero 2026  
-> **Estado**: En planificación
+> **Última actualización**: 3 de Febrero 2026  
+> **Estado**: En progreso - Fase 1 completada ✅
 
 Plan integral para optimizar rendimiento, seguridad, UI/UX y arquitectura de la aplicación de transcripción offline.
 
@@ -27,8 +28,8 @@ Plan integral para optimizar rendimiento, seguridad, UI/UX y arquitectura de la 
 
 | Fase | Área | Prioridad | Esfuerzo | Estado |
 |------|------|-----------|----------|--------|
-| 1 | 🎨 UI/UX - Colores y Diseño | Alta | Medio | ⏳ Pendiente |
-| 2 | 📦 Optimización de Tamaño | Alta | Alto | ⏳ Pendiente |
+| 1 | 🎨 UI/UX - Colores y Diseño | Alta | Medio | ✅ Completada |
+| 2 | 📦 Optimización de Tamaño | Alta | Alto | 🔄 En progreso |
 | 3 | 🎵 Soporte de Formatos de Audio | Media | Bajo | ⏳ Pendiente |
 | 4 | 🔒 Auditoría de Seguridad | Alta | Bajo | ⏳ Pendiente |
 | 5 | ⚙️ Build y CI/CD | Media | Medio | ⏳ Pendiente |
@@ -58,20 +59,29 @@ Implementar paleta de colores verde agua + rosa pastel, modularizar UI, mejorar 
 
 ### Tareas
 
-- [ ] **1.1** Crear archivo `Color.kt` con paleta completa (light + dark)
-- [ ] **1.2** Actualizar `Theme.kt` con `MaterialTheme` usando nuevos colores
-- [ ] **1.3** Implementar modo oscuro con colores adaptados
-- [ ] **1.4** Refactorizar `MainActivity.kt` (834 líneas) en componentes modulares:
-  - `screens/IdleScreen.kt`
-  - `screens/ProcessingScreen.kt`
-  - `screens/ResultScreen.kt`
-  - `screens/ErrorScreen.kt`
-  - `components/ModeSelector.kt`
-  - `components/ProcessingSteps.kt`
-  - `components/TranscriptionResult.kt`
-- [ ] **1.5** Agregar `SelectionContainer` para selección de texto transcrito
-- [ ] **1.6** Implementar botón de copiar con feedback visual (Snackbar "Texto copiado")
-- [ ] **1.7** Agregar animaciones sutiles con `animateContentSize` en transiciones
+- [x] **1.1** Crear archivo `Color.kt` con paleta completa (light + dark)
+- [x] **1.2** Actualizar `Theme.kt` con `MaterialTheme` usando nuevos colores
+- [x] **1.3** Implementar modo oscuro con colores adaptados
+- [x] **1.4** Refactorizar `MainActivity.kt` (834 → 120 líneas) en componentes modulares:
+  - `screens/IdleScreen.kt` ✅
+  - `screens/ProcessingScreen.kt` ✅
+  - `screens/ResultScreen.kt` ✅
+  - `screens/ErrorScreen.kt` ✅
+  - Componentes inline: ModeSelector, ProcessingSteps, AppLogo, PrivacyBadge ✅
+- [x] **1.5** Agregar `SelectionContainer` para selección de texto transcrito
+- [x] **1.6** Implementar botón de copiar con feedback visual (Toast animado "¡Copiado!")
+- [x] **1.7** Agregar animaciones sutiles con `AnimatedContent` y `animateFloatAsState`
+
+### Resultado
+
+**Completada el 3 de Febrero 2026** - Commit: `aedfa6c`
+
+| Métrica | Antes | Después |
+|---------|-------|--------|
+| Líneas en MainActivity.kt | 834 | ~120 |
+| Archivos de UI | 1 | 6 |
+| Paleta de colores | Azul Material | Verde agua + Rosa pastel |
+| Modo oscuro | ❌ | ✅ |
 
 ### Archivos a Modificar
 
