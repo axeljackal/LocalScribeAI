@@ -89,7 +89,7 @@ dependencies {
     implementation(files("libs/sherpa-onnx-1.12.23.aar"))
 
     // FFmpeg para conversión de audio
-    implementation("com.arthenica:ffmpeg-kit-min-gpl:6.0-2")
+    implementation("com.arthenica:ffmpeg-kit-min-gpl:6.0-2.LTS")
 
     // Coroutines para operaciones asíncronas
     implementation(libs.kotlinx.coroutines.android)
