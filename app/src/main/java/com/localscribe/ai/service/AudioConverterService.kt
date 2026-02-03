@@ -2,20 +2,19 @@ package com.localscribe.ai.service
 
 import android.content.Context
 import android.util.Log
+import com.arthenica.ffmpegkit.FFmpegKit
+import com.arthenica.ffmpegkit.FFprobeKit
+import com.arthenica.ffmpegkit.ReturnCode
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.bytedeco.ffmpeg.global.avcodec
-import org.bytedeco.ffmpeg.global.avformat
-import org.bytedeco.ffmpeg.global.avutil
-import org.bytedeco.ffmpeg.global.swresample
-import org.bytedeco.javacpp.Loader
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
 
 /**
- * Servicio para conversión de audio usando FFmpeg (bytedeco)
+ * Servicio para conversión de audio usando FFmpegKit
  * Convierte cualquier formato de audio a WAV 16kHz mono PCM
+ * Compatible con AAB (App Bundle) para Play Store
  */
 class AudioConverterService(private val context: Context) {
 
@@ -24,18 +23,6 @@ class AudioConverterService(private val context: Context) {
         private const val TARGET_SAMPLE_RATE = 16000
         private const val TARGET_CHANNELS = 1
         private const val TARGET_FORMAT = "wav"
-        
-        init {
-            // Cargar librerías nativas de FFmpeg
-            try {
-                Loader.load(avutil::class.java)
-                Loader.load(avcodec::class.java)
-                Loader.load(avformat::class.java)
-                Loader.load(swresample::class.java)
-            } catch (e: Exception) {
-                Log.e(TAG, "Error loading FFmpeg libraries", e)
-            }
-        }
     }
 
     /**
@@ -101,39 +88,26 @@ class AudioConverterService(private val context: Context) {
     }
 
     /**
-     * Ejecuta la conversión usando FFmpeg vía línea de comandos con bytedeco
+     * Ejecuta la conversión usando FFmpegKit
      */
     private fun executeConversion(inputPath: String, outputPath: String): Boolean {
         return try {
-            // Usar ProcessBuilder para ejecutar ffmpeg
-            val ffmpegPath = Loader.load(org.bytedeco.ffmpeg.ffmpeg::class.java)
+            // Comando FFmpeg para convertir a WAV 16kHz mono PCM
+            val command = "-y -i \"$inputPath\" -ar $TARGET_SAMPLE_RATE -ac $TARGET_CHANNELS -c:a pcm_s16le -f $TARGET_FORMAT \"$outputPath\""
             
-            val command = listOf(
-                ffmpegPath,
-                "-y",                    // Sobrescribir sin preguntar
-                "-i", inputPath,         // Archivo de entrada
-                "-ar", TARGET_SAMPLE_RATE.toString(), // Sample rate 16kHz
-                "-ac", TARGET_CHANNELS.toString(),    // Mono
-                "-c:a", "pcm_s16le",     // Codec PCM 16-bit little endian
-                "-f", TARGET_FORMAT,      // Formato WAV
-                outputPath
-            )
+            Log.d(TAG, "Executing FFmpeg command: ffmpeg $command")
             
-            Log.d(TAG, "Executing FFmpeg command: ${command.joinToString(" ")}")
+            val session = FFmpegKit.execute(command)
             
-            val process = ProcessBuilder(command)
-                .redirectErrorStream(true)
-                .start()
-            
-            val output = process.inputStream.bufferedReader().readText()
-            val exitCode = process.waitFor()
-            
-            if (exitCode == 0) {
+            if (ReturnCode.isSuccess(session.returnCode)) {
                 Log.d(TAG, "FFmpeg completed successfully")
                 true
+            } else if (ReturnCode.isCancel(session.returnCode)) {
+                Log.w(TAG, "FFmpeg was cancelled")
+                false
             } else {
-                Log.e(TAG, "FFmpeg failed with exit code: $exitCode")
-                Log.e(TAG, "FFmpeg output: $output")
+                Log.e(TAG, "FFmpeg failed with return code: ${session.returnCode}")
+                Log.e(TAG, "FFmpeg output: ${session.output}")
                 false
             }
         } catch (e: Exception) {
@@ -147,24 +121,14 @@ class AudioConverterService(private val context: Context) {
      */
     suspend fun getAudioDuration(filePath: String): Float = withContext(Dispatchers.IO) {
         try {
-            val ffprobePath = Loader.load(org.bytedeco.ffmpeg.ffprobe::class.java)
+            val session = FFprobeKit.execute("-v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 \"$filePath\"")
             
-            val command = listOf(
-                ffprobePath,
-                "-v", "error",
-                "-show_entries", "format=duration",
-                "-of", "default=noprint_wrappers=1:nokey=1",
-                filePath
-            )
-            
-            val process = ProcessBuilder(command)
-                .redirectErrorStream(true)
-                .start()
-            
-            val output = process.inputStream.bufferedReader().readText().trim()
-            process.waitFor()
-            
-            output.toFloatOrNull() ?: 0f
+            if (ReturnCode.isSuccess(session.returnCode)) {
+                session.output?.trim()?.toFloatOrNull() ?: 0f
+            } else {
+                Log.e(TAG, "FFprobe failed: ${session.output}")
+                0f
+            }
         } catch (e: Exception) {
             Log.e(TAG, "Error getting audio duration", e)
             0f

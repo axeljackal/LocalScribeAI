@@ -6,9 +6,9 @@
 -keep class com.k2fsa.sherpa.onnx.** { *; }
 -keepclassmembers class com.k2fsa.sherpa.onnx.** { *; }
 
-# Mantener clases de FFmpeg Kit
+# Mantener clases de FFmpegKit
 -keep class com.arthenica.ffmpegkit.** { *; }
--keepclassmembers class com.arthenica.ffmpegkit.** { *; }
+-keep class com.arthenica.smartexception.** { *; }
 
 # Mantener nuestras clases de modelo
 -keep class com.localscribe.ai.** { *; }
@@ -27,17 +27,6 @@
 
 # Reglas para Compose
 -keep class androidx.compose.** { *; }
-
-# Reglas para Bytedeco/JavaCPP y FFmpeg
--keep class org.bytedeco.** { *; }
--keepclassmembers class org.bytedeco.** { *; }
--dontwarn org.bytedeco.**
-
-# Ignorar clases de OSGI que no existen en Android
--dontwarn org.osgi.**
--dontwarn org.osgi.annotation.versioning.**
--dontwarn aQute.bnd.annotation.**
--dontwarn org.slf4j.**
 
 # Mantener JNI
 -keepclasseswithmembernames class * {

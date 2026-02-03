@@ -59,27 +59,9 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
             excludes += "/META-INF/INDEX.LIST"
             excludes += "/META-INF/DEPENDENCIES"
-            // Bytedeco/JavaCPP native-image configs (duplicate files)
-            excludes += "/META-INF/native-image/**"
-            excludes += "/META-INF/proguard/**"
-            excludes += "/META-INF/maven/**"
         }
         jniLibs {
-            useLegacyPackaging = true
-            // Excluir libs nativas de plataformas no-Android (bytedeco incluye todas)
-            excludes += setOf(
-                "**/linux-x86/**",
-                "**/linux-x86_64/**",
-                "**/linux-arm/**",
-                "**/linux-arm64/**",
-                "**/linux-ppc64le/**",
-                "**/macosx-x86_64/**",
-                "**/macosx-arm64/**",
-                "**/windows-x86/**",
-                "**/windows-x86_64/**",
-                "**/ios-arm64/**",
-                "**/ios-x86_64/**"
-            )
+            useLegacyPackaging = false  // AAB compatible
         }
     }
 
@@ -107,10 +89,9 @@ dependencies {
     // Sherpa ONNX para transcripción offline (AAR local)
     implementation(files("libs/sherpa-onnx-1.12.23.aar"))
 
-    // FFmpeg para conversión de audio (bytedeco)
-    // El filtrado de arquitecturas se hace via ndk.abiFilters en defaultConfig
-    // que excluye las libs nativas de x86/x86_64 del APK final
-    implementation("org.bytedeco:ffmpeg-platform:7.1-1.5.11")
+    // FFmpegKit para conversión de audio (AAB compatible, ~15MB vs ~100MB de bytedeco)
+    // Variante 'audio' incluye solo codecs de audio (mp3, aac, ogg, flac, wav, etc.)
+    implementation("com.arthenica:ffmpeg-kit-audio:6.0-2")
 
     // Coroutines para operaciones asíncronas
     implementation(libs.kotlinx.coroutines.android)
