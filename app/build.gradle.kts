@@ -88,8 +88,8 @@ dependencies {
     // Sherpa ONNX para transcripción offline (AAR local)
     implementation(files("libs/sherpa-onnx-1.12.23.aar"))
 
-    // FFmpeg para conversión de audio
-    implementation("com.arthenica:ffmpeg-kit-min-gpl:6.0.LTS")
+    // FFmpeg para conversión de audio (bytedeco - alternativa mantenida)
+    implementation("org.bytedeco:ffmpeg-platform:7.1-1.5.11")
 
     // Coroutines para operaciones asíncronas
     implementation(libs.kotlinx.coroutines.android)
